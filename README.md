@@ -74,7 +74,7 @@ Update privileges for role read_only_by_column
 
     Update the script as necessary
 
-        $ vim /<path>/postgress-read-only-specific-columns/read_only_by_column.sql
+        $ vim /<path>/postgress-read-only-by-column/read_only_by_column.sql
 
         Every change to the schema gets a change in the file.
         if add a private column, then add the column name to comments for that table.
@@ -85,16 +85,15 @@ Update privileges for role read_only_by_column
 
     To run the scripts in Prod env
 
-        cd /<path>/postgress-read-only-specific-columns
+        cd /<path>/postgress-read-only-by-column
         # return errors only. Remove the pipe to return all output
         $ psql -h rds.example.net -d database1 -U read_only_user --echo-all --file=read_only_by_column.sql | grep -i error
         password: <password> 
 
 Test lockdown of privileges for read-only user
 
-      cd /<path>/postgress-read-only-specific-columns/lockdown_test
-      $ psql -h rds.example.net -d database1  -U <read-only user name>  --echo-all --file=read_only_lockdown_test.sh
-        password: <user password>
+      $ cd /<path>/postgress-read-only-by-column/lockdown_test
+      $ ./read_only_lockdown_test.sh 
 
 Process to ensure privileges keep up with DB migrations,
 so that users have access to all non-private columns, and private data is not exposed.
