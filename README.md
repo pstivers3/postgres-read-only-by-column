@@ -44,7 +44,7 @@ Create read-only user and grant read-only role to the user
 
     \set name <user name> 
     create user :name with nosuperuser nocreatedb nocreaterole password 'TempPwd';
-    \c database1 
+    \c database1
     revoke all privileges on all tables in schema public from :name;
     revoke all privileges on all sequences in schema public from :name;
     revoke all privileges on all functions in schema public from :name;
@@ -93,7 +93,7 @@ Update privileges for role read_only_by_column
 Test lockdown of privileges for read-only user
 
       $ cd /<path>/postgress-read-only-by-column/lockdown_test
-      $ ./read_only_lockdown_test.sh 
+      $ ./read_only_lockdown_test.sh
 
 Process to ensure privileges keep up with DB migrations,
 so that users have access to all non-private columns, and private data is not exposed.
